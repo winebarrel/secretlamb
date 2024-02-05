@@ -31,7 +31,7 @@ fmt.Println(v.Parameter.Value)
 ## Secrets Manager
 
 ```go
-client := secretlamb.MustNewParameters()
+client := secretlamb.MustNewSecrets()
 v, err := client.Get("foo")
 
 if err != nil {
