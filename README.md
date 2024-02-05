@@ -21,26 +21,60 @@ go get github.com/winebarrel/secretlamb
 ### Parameter Store
 
 ```go
-client := secretlamb.MustNewParameters()
-v, err := client.Get("foo")
-//v, err := client.GetWithDecryption("foo")
+package main
 
-if err != nil {
-	panic(err)
+import (
+	"context"
+	"fmt"
+
+	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/winebarrel/secretlamb"
+)
+
+func HandleRequest(ctx context.Context, event any) (*string, error) {
+	client := secretlamb.MustNewParameters()
+	v, err := client.Get("foo")
+	//v, err := client.GetWithDecryption("foo")
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(v.Parameter.Value)
+	return nil, nil
 }
 
-fmt.Println(v.Parameter.Value)
+func main() {
+	lambda.Start(HandleRequest)
+}
 ```
 
 ### Secrets Manager
 
 ```go
-client := secretlamb.MustNewSecrets()
-v, err := client.Get("foo")
+package main
 
-if err != nil {
-	panic(err)
+import (
+	"context"
+	"fmt"
+
+	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/winebarrel/secretlamb"
+)
+
+func HandleRequest(ctx context.Context, event any) (*string, error) {
+	client := secretlamb.MustNewSecrets()
+	v, err := client.Get("foo")
+	
+	if err != nil {
+		panic(err)
+	}
+	
+	fmt.Println(v.SecretString)
+	return nil, nil
 }
 
-fmt.Println(v.SecretString)
+func main() {
+	lambda.Start(HandleRequest)
+}
 ```
