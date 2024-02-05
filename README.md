@@ -28,7 +28,7 @@ if err != nil {
 fmt.Println(v.Parameter.Value)
 ```
 
-## Secrets Manager
+### Secrets Manager
 
 ```go
 client := secretlamb.MustNewSecrets()
