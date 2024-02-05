@@ -1,5 +1,9 @@
 # secretlamb
 
+[![CI](https://github.com/winebarrel/secretlamb/actions/workflows/ci.yml/badge.svg)](https://github.com/winebarrel/secretlamb/actions/workflows/ci.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/winebarrel/secretlamb.svg)](https://pkg.go.dev/github.com/winebarrel/secretlamb)
+[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/winebarrel/secretlamb)](https://github.com/winebarrel/secretlamb/tags)
+[![Go Report Card](https://goreportcard.com/badge/github.com/winebarrel/secretlamb)](https://goreportcard.com/report/github.com/winebarrel/secretlamb)
 
 Golang library for using AWS Parameters and Secrets Lambda Extension.
 
