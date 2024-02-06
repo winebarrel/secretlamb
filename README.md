@@ -37,7 +37,7 @@ func HandleRequest(ctx context.Context, event any) (*string, error) {
 	//v, err := client.GetWithDecryption("foo")
 
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	fmt.Println(v.Parameter.Value)
@@ -67,7 +67,7 @@ func HandleRequest(ctx context.Context, event any) (*string, error) {
 	v, err := client.Get("foo")
 	
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	
 	fmt.Println(v.SecretString)
