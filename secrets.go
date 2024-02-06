@@ -4,10 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/url"
+
+	"github.com/hashicorp/go-retryablehttp"
 )
 
 type Secrets struct {
-	client *client
+	*client
 }
 
 type SecretOutput struct {
@@ -51,6 +53,14 @@ func MustNewSecrets() *Secrets {
 	}
 
 	return client
+}
+
+func (s *Secrets) WithRetry(retryMax int) *Secrets {
+	retryClient := retryablehttp.NewClient()
+	retryClient.RetryMax = retryMax
+	retryClient.CheckRetry = retryPolicy
+	s.client.HTTPClient = retryClient.StandardClient()
+	return s
 }
 
 func (s *Secrets) Get(secretId string, options ...*SecretOption) (*SecretOutput, error) {
