@@ -16,7 +16,7 @@ type SecretOutput struct {
 	VersionID     string   `json:"VersionId"`
 	SecretString  string   `json:"SecretString"`
 	VersionStages []string `json:"VersionStages"`
-	CreatedDate   float64  `json:"CreatedDate"`
+	CreatedDate   string   `json:"CreatedDate"`
 }
 
 type SecretOption struct {
