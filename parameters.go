@@ -12,13 +12,13 @@ type Parameters struct {
 }
 
 type ParameterOutputParameter struct {
-	Name             string  `json:"Name"`
-	Type             string  `json:"Type"`
-	Value            string  `json:"Value"`
-	Version          int     `json:"Version"`
-	LastModifiedDate float64 `json:"LastModifiedDate"`
-	Arn              string  `json:"ARN"`
-	DataType         string  `json:"DataType"`
+	Name             string `json:"Name"`
+	Type             string `json:"Type"`
+	Value            string `json:"Value"`
+	Version          int64  `json:"Version"`
+	LastModifiedDate string `json:"LastModifiedDate"`
+	Arn              string `json:"ARN"`
+	DataType         string `json:"DataType"`
 }
 
 type ParameterOutput struct {

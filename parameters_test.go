@@ -24,7 +24,7 @@ func TestParametersGet(t *testing.T) {
 						"Type": "String",
 						"Value": "Veni",
 						"Version": 1,
-						"LastModifiedDate": 1530018761.888,
+						"LastModifiedDate": "1530018761.888",
 						"ARN": "arn:aws:ssm:us-east-2:111222333444:parameter/MyStringParameter",
 						"DataType": "text"
 				}
@@ -44,7 +44,7 @@ func TestParametersGet(t *testing.T) {
 				Type:             "String",
 				Value:            "Veni",
 				Version:          1,
-				LastModifiedDate: 1530018761.888,
+				LastModifiedDate: "1530018761.888",
 				Arn:              "arn:aws:ssm:us-east-2:111222333444:parameter/MyStringParameter",
 				DataType:         "text",
 			},
@@ -68,7 +68,7 @@ func TestParametersGetWithPortEnv(t *testing.T) {
 						"Type": "String",
 						"Value": "Veni",
 						"Version": 1,
-						"LastModifiedDate": 1530018761.888,
+						"LastModifiedDate": "1530018761.888",
 						"ARN": "arn:aws:ssm:us-east-2:111222333444:parameter/MyStringParameter",
 						"DataType": "text"
 				}
@@ -88,7 +88,7 @@ func TestParametersGetWithPortEnv(t *testing.T) {
 				Type:             "String",
 				Value:            "Veni",
 				Version:          1,
-				LastModifiedDate: 1530018761.888,
+				LastModifiedDate: "1530018761.888",
 				Arn:              "arn:aws:ssm:us-east-2:111222333444:parameter/MyStringParameter",
 				DataType:         "text",
 			},
@@ -111,7 +111,7 @@ func TestParametersGetWithDecryption(t *testing.T) {
 						"Type": "String",
 						"Value": "Veni",
 						"Version": 1,
-						"LastModifiedDate": 1530018761.888,
+						"LastModifiedDate": "1530018761.888",
 						"ARN": "arn:aws:ssm:us-east-2:111222333444:parameter/MyStringParameter",
 						"DataType": "text"
 				}
@@ -131,7 +131,7 @@ func TestParametersGetWithDecryption(t *testing.T) {
 				Type:             "String",
 				Value:            "Veni",
 				Version:          1,
-				LastModifiedDate: 1530018761.888,
+				LastModifiedDate: "1530018761.888",
 				Arn:              "arn:aws:ssm:us-east-2:111222333444:parameter/MyStringParameter",
 				DataType:         "text",
 			},
@@ -154,7 +154,7 @@ func TestParametersWithOptions(t *testing.T) {
 						"Type": "String",
 						"Value": "Veni",
 						"Version": 1,
-						"LastModifiedDate": 1530018761.888,
+						"LastModifiedDate": "1530018761.888",
 						"ARN": "arn:aws:ssm:us-east-2:111222333444:parameter/MyStringParameter",
 						"DataType": "text"
 				}
@@ -178,7 +178,7 @@ func TestParametersWithOptions(t *testing.T) {
 				Type:             "String",
 				Value:            "Veni",
 				Version:          1,
-				LastModifiedDate: 1530018761.888,
+				LastModifiedDate: "1530018761.888",
 				Arn:              "arn:aws:ssm:us-east-2:111222333444:parameter/MyStringParameter",
 				DataType:         "text",
 			},
@@ -201,7 +201,7 @@ func TestParametersWithEncode(t *testing.T) {
 						"Type": "String",
 						"Value": "Veni",
 						"Version": 1,
-						"LastModifiedDate": 1530018761.888,
+						"LastModifiedDate": "1530018761.888",
 						"ARN": "arn:aws:ssm:us-east-2:111222333444:parameter/MyStringParameter",
 						"DataType": "text"
 				}
@@ -225,7 +225,7 @@ func TestParametersWithEncode(t *testing.T) {
 				Type:             "String",
 				Value:            "Veni",
 				Version:          1,
-				LastModifiedDate: 1530018761.888,
+				LastModifiedDate: "1530018761.888",
 				Arn:              "arn:aws:ssm:us-east-2:111222333444:parameter/MyStringParameter",
 				DataType:         "text",
 			},

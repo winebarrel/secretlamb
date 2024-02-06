@@ -26,7 +26,7 @@ func TestSecretsGet(t *testing.T) {
 				"VersionStages": [
 						"AWSPREVIOUS"
 				],
-				"CreatedDate": 1523477145.713
+				"CreatedDate": "1523477145.713"
 			}
 		`), nil
 	})
@@ -43,7 +43,7 @@ func TestSecretsGet(t *testing.T) {
 			VersionID:     "a1b2c3d4-5678-90ab-cdef-EXAMPLE22222",
 			SecretString:  "{\"user\":\"diegor\",\"password\":\"PREVIOUS-EXAMPLE-PASSWORD\"}",
 			VersionStages: []string{"AWSPREVIOUS"},
-			CreatedDate:   1523477145.713,
+			CreatedDate:   "1523477145.713",
 		},
 		value,
 	)
@@ -66,7 +66,7 @@ func TestSecretsGetWithPortEnv(t *testing.T) {
 				"VersionStages": [
 						"AWSPREVIOUS"
 				],
-				"CreatedDate": 1523477145.713
+				"CreatedDate": "1523477145.713"
 			}
 		`), nil
 	})
@@ -83,7 +83,7 @@ func TestSecretsGetWithPortEnv(t *testing.T) {
 			VersionID:     "a1b2c3d4-5678-90ab-cdef-EXAMPLE22222",
 			SecretString:  "{\"user\":\"diegor\",\"password\":\"PREVIOUS-EXAMPLE-PASSWORD\"}",
 			VersionStages: []string{"AWSPREVIOUS"},
-			CreatedDate:   1523477145.713,
+			CreatedDate:   "1523477145.713",
 		},
 		value,
 	)
@@ -105,7 +105,7 @@ func TestSecretsGetWithOptions(t *testing.T) {
 				"VersionStages": [
 						"AWSPREVIOUS"
 				],
-				"CreatedDate": 1523477145.713
+				"CreatedDate": "1523477145.713"
 			}
 		`), nil
 	})
@@ -125,7 +125,7 @@ func TestSecretsGetWithOptions(t *testing.T) {
 			VersionID:     "a1b2c3d4-5678-90ab-cdef-EXAMPLE22222",
 			SecretString:  "{\"user\":\"diegor\",\"password\":\"PREVIOUS-EXAMPLE-PASSWORD\"}",
 			VersionStages: []string{"AWSPREVIOUS"},
-			CreatedDate:   1523477145.713,
+			CreatedDate:   "1523477145.713",
 		},
 		value,
 	)
@@ -147,7 +147,7 @@ func TestSecretsGetWithEncode(t *testing.T) {
 				"VersionStages": [
 						"AWSPREVIOUS"
 				],
-				"CreatedDate": 1523477145.713
+				"CreatedDate": "1523477145.713"
 			}
 		`), nil
 	})
@@ -167,7 +167,7 @@ func TestSecretsGetWithEncode(t *testing.T) {
 			VersionID:     "a1b2c3d4-5678-90ab-cdef-EXAMPLE22222",
 			SecretString:  "{\"user\":\"diegor\",\"password\":\"PREVIOUS-EXAMPLE-PASSWORD\"}",
 			VersionStages: []string{"AWSPREVIOUS"},
-			CreatedDate:   1523477145.713,
+			CreatedDate:   "1523477145.713",
 		},
 		value,
 	)
