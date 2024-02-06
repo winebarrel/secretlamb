@@ -1,7 +1,10 @@
 package secretlamb_test
 
 import (
+	"fmt"
+	"net"
 	"net/http"
+	"net/http/httptest"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
@@ -175,6 +178,62 @@ func TestSecretsGetWithEncode(t *testing.T) {
 		secretlamb.SecretVersionStage("zoo&baz"),
 	)
 	require.NoError(err)
+
+	assert.Equal(
+		&secretlamb.SecretOutput{
+			Arn:           "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestSecret-a1b2c3",
+			Name:          "MyTestSecret",
+			VersionID:     "a1b2c3d4-5678-90ab-cdef-EXAMPLE22222",
+			SecretString:  "{\"user\":\"diegor\",\"password\":\"PREVIOUS-EXAMPLE-PASSWORD\"}",
+			VersionStages: []string{"AWSPREVIOUS"},
+			CreatedDate:   "1523477145.713",
+		},
+		value,
+	)
+}
+
+func TestSecretsGetWithRetry(t *testing.T) {
+	t.Setenv("PARAMETERS_SECRETS_EXTENSION_HTTP_PORT", "12773")
+
+	assert := assert.New(t)
+	require := require.New(t)
+
+	try := 0
+
+	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if try < 2 {
+			w.WriteHeader(http.StatusBadRequest)
+			try++
+		} else {
+			fmt.Fprintln(w, `
+				{
+					"ARN": "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestSecret-a1b2c3",
+					"Name": "MyTestSecret",
+					"VersionId": "a1b2c3d4-5678-90ab-cdef-EXAMPLE22222",
+					"SecretString": "{\"user\":\"diegor\",\"password\":\"PREVIOUS-EXAMPLE-PASSWORD\"}",
+					"VersionStages": [
+							"AWSPREVIOUS"
+					],
+					"CreatedDate": "1523477145.713"
+				}
+		`)
+		}
+	})
+
+	l, _ := net.Listen("tcp", ":12773")
+	ts := httptest.Server{
+		Listener: l,
+		Config:   &http.Server{Handler: handler},
+	}
+	ts.Start()
+	defer ts.Close()
+
+	s, err := secretlamb.NewSecrets()
+	require.NoError(err)
+	s = s.WithRetry(2)
+	value, err := s.Get("foo")
+	require.NoError(err)
+	assert.Equal(2, try)
 
 	assert.Equal(
 		&secretlamb.SecretOutput{

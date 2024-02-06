@@ -5,10 +5,12 @@ import (
 	"fmt"
 	"net/url"
 	"strconv"
+
+	"github.com/hashicorp/go-retryablehttp"
 )
 
 type Parameters struct {
-	client *client
+	*client
 }
 
 type ParameterOutputParameter struct {
@@ -64,6 +66,14 @@ func MustNewParameters() *Parameters {
 	}
 
 	return client
+}
+
+func (p *Parameters) WithRetry(retryMax int) *Parameters {
+	retryClient := retryablehttp.NewClient()
+	retryClient.RetryMax = retryMax
+	retryClient.CheckRetry = retryPolicy
+	p.client.HTTPClient = retryClient.StandardClient()
+	return p
 }
 
 func (p *Parameters) Get(name string, options ...*ParameterOption) (*ParameterOutput, error) {

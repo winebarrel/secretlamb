@@ -32,7 +32,8 @@ import (
 )
 
 func HandleRequest(ctx context.Context, event any) (*string, error) {
-	client := secretlamb.MustNewParameters()
+	client := secretlamb.MustNewParameters() // .WithRetry(3)
+
 	v, err := client.Get("foo")
 	//v, err := client.GetWithDecryption("foo")
 
@@ -63,13 +64,13 @@ import (
 )
 
 func HandleRequest(ctx context.Context, event any) (*string, error) {
-	client := secretlamb.MustNewSecrets()
+	client := secretlamb.MustNewSecrets() // .WithRetry(3)
 	v, err := client.Get("foo")
-	
+
 	if err != nil {
 		return nil, err
 	}
-	
+
 	fmt.Println(v.SecretString)
 	return nil, nil
 }
