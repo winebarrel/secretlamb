@@ -53,6 +53,22 @@ func TestParametersGet(t *testing.T) {
 	)
 }
 
+func TestParametersGetErr(t *testing.T) {
+	assert := assert.New(t)
+	require := require.New(t)
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	httpmock.RegisterResponder(http.MethodGet, "http://localhost:2773/systemsmanager/parameters/get/?name=foo", func(req *http.Request) (*http.Response, error) {
+		return httpmock.NewStringResponse(http.StatusBadRequest, "not ready to serve traffic, please wait"), nil
+	})
+
+	p, err := secretlamb.NewParameters()
+	require.NoError(err)
+	_, err = p.Get("foo")
+	assert.ErrorContains(err, "failed to get parameter - http request error: 400: not ready to serve traffic, please wait")
+}
+
 func TestParametersGetWithPortEnv(t *testing.T) {
 	t.Setenv("PARAMETERS_SECRETS_EXTENSION_HTTP_PORT", "7777")
 	assert := assert.New(t)

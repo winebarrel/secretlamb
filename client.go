@@ -58,7 +58,7 @@ func (client *client) get(query *url.Values) ([]byte, error) {
 		text := res.Status
 
 		if len(body) > 0 {
-			text += "\n" + string(body)
+			text += ": " + string(body)
 		}
 
 		return nil, errors.New(text)
