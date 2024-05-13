@@ -3,7 +3,7 @@ module github.com/winebarrel/secretlamb
 go 1.21.6
 
 require (
-	github.com/hashicorp/go-retryablehttp v0.7.5
+	github.com/hashicorp/go-retryablehttp v0.7.6
 	github.com/jarcoal/httpmock v1.3.1
 	github.com/stretchr/testify v1.9.0
 )
