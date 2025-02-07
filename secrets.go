@@ -1,6 +1,7 @@
 package secretlamb
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"net/url"
@@ -64,6 +65,10 @@ func (s *Secrets) WithRetry(retryMax int) *Secrets {
 }
 
 func (s *Secrets) Get(secretId string, options ...*SecretOption) (*SecretOutput, error) {
+	return s.GetWithContext(context.Background(), secretId, options)
+}
+
+func (s *Secrets) GetWithContext(ctx context.Context, secretId string, options []*SecretOption) (*SecretOutput, error) {
 	query := &url.Values{}
 	query.Add("secretId", secretId)
 
@@ -71,7 +76,7 @@ func (s *Secrets) Get(secretId string, options ...*SecretOption) (*SecretOutput,
 		query.Add(opt.Key, opt.Value)
 	}
 
-	body, err := s.client.get(query)
+	body, err := s.client.get(ctx, query)
 
 	if err != nil {
 		return nil, fmt.Errorf("failed to get secret - http request error: %w", err)

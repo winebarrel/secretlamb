@@ -1,6 +1,7 @@
 package secretlamb
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"net/url"
@@ -77,6 +78,10 @@ func (p *Parameters) WithRetry(retryMax int) *Parameters {
 }
 
 func (p *Parameters) Get(name string, options ...*ParameterOption) (*ParameterOutput, error) {
+	return p.GetWithContext(context.Background(), name, options...)
+}
+
+func (p *Parameters) GetWithContext(ctx context.Context, name string, options ...*ParameterOption) (*ParameterOutput, error) {
 	query := &url.Values{}
 	query.Add("name", name)
 
@@ -84,7 +89,7 @@ func (p *Parameters) Get(name string, options ...*ParameterOption) (*ParameterOu
 		query.Add(opt.Key, opt.Value)
 	}
 
-	body, err := p.client.get(query)
+	body, err := p.client.get(ctx, query)
 
 	if err != nil {
 		return nil, fmt.Errorf("failed to get parameter - http request error: %w", err)
