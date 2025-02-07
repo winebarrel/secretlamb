@@ -35,8 +35,8 @@ func newClient(path string) (*client, error) {
 	return client, nil
 }
 
-func (client *client) get(query *url.Values) ([]byte, error) {
-	req, err := http.NewRequest(http.MethodGet, client.url.String(), nil)
+func (client *client) get(ctx context.Context, query *url.Values) ([]byte, error) {
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, client.url.String(), nil)
 
 	if err != nil {
 		return nil, err
