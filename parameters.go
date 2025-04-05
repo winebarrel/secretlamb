@@ -73,7 +73,7 @@ func (p *Parameters) WithRetry(retryMax int) *Parameters {
 	retryClient := retryablehttp.NewClient()
 	retryClient.RetryMax = retryMax
 	retryClient.CheckRetry = retryPolicy
-	p.client.HTTPClient = retryClient.StandardClient()
+	p.HTTPClient = retryClient.StandardClient()
 	return p
 }
 
@@ -89,7 +89,7 @@ func (p *Parameters) GetWithContext(ctx context.Context, name string, options ..
 		query.Add(opt.Key, opt.Value)
 	}
 
-	body, err := p.client.get(ctx, query)
+	body, err := p.get(ctx, query)
 
 	if err != nil {
 		return nil, fmt.Errorf("failed to get parameter - http request error: %w", err)
