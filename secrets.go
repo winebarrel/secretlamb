@@ -60,7 +60,7 @@ func (s *Secrets) WithRetry(retryMax int) *Secrets {
 	retryClient := retryablehttp.NewClient()
 	retryClient.RetryMax = retryMax
 	retryClient.CheckRetry = retryPolicy
-	s.client.HTTPClient = retryClient.StandardClient()
+	s.HTTPClient = retryClient.StandardClient()
 	return s
 }
 
@@ -76,7 +76,7 @@ func (s *Secrets) GetWithContext(ctx context.Context, secretId string, options [
 		query.Add(opt.Key, opt.Value)
 	}
 
-	body, err := s.client.get(ctx, query)
+	body, err := s.get(ctx, query)
 
 	if err != nil {
 		return nil, fmt.Errorf("failed to get secret - http request error: %w", err)
