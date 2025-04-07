@@ -65,7 +65,7 @@ func TestTestSecretsGetErr(t *testing.T) {
 	client, err := secretlamb.NewSecrets()
 	require.NoError(err)
 	_, err = client.Get("foo")
-	assert.ErrorContains(err, "failed to get secret - http request error: 400: not ready to serve traffic, please wait")
+	assert.ErrorContains(err, "failed to get secret - http request error: 400 Bad Request: not ready to serve traffic, please wait")
 }
 
 func TestSecretsGetWithPortEnv(t *testing.T) {
