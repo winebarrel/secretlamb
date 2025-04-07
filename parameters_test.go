@@ -69,7 +69,7 @@ func TestParametersGetErr(t *testing.T) {
 	p, err := secretlamb.NewParameters()
 	require.NoError(err)
 	_, err = p.Get("foo")
-	assert.ErrorContains(err, "failed to get parameter - http request error: 400: not ready to serve traffic, please wait")
+	assert.ErrorContains(err, "failed to get parameter - http request error: 400 Bad Request: not ready to serve traffic, please wait")
 }
 
 func TestParametersGetWithPortEnv(t *testing.T) {
