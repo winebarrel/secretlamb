@@ -4,7 +4,7 @@ go 1.21.6
 
 require (
 	github.com/hashicorp/go-retryablehttp v0.7.7
-	github.com/jarcoal/httpmock v1.3.1
+	github.com/jarcoal/httpmock v1.4.0
 	github.com/stretchr/testify v1.10.0
 )
 
